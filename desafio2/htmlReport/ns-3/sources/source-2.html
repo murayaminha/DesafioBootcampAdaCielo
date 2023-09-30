@@ -1,0 +1,230 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > PessoaJuridicaController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.cielo.bootcamp.desafio.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: PessoaJuridicaController (com.cielo.bootcamp.desafio.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PessoaJuridicaController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    14,3%
+  </span>
+  <span class="absValue">
+    (1/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    2,3%
+  </span>
+  <span class="absValue">
+    (1/44)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.cielo.bootcamp.desafio.controller;
+&nbsp;
+&nbsp;import com.cielo.bootcamp.desafio.dto.PessoaJuridicaDTO;
+&nbsp;import com.cielo.bootcamp.desafio.dto.PessoaJuridicaDTO;
+&nbsp;import com.cielo.bootcamp.desafio.exception.DesafioException;
+&nbsp;import com.cielo.bootcamp.desafio.service.PessoaJuridicaService;
+&nbsp;import io.swagger.annotations.Api;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.UUID;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.DeleteMapping;
+&nbsp;import org.springframework.web.bind.annotation.GetMapping;
+&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+&nbsp;import org.springframework.web.bind.annotation.PostMapping;
+&nbsp;import org.springframework.web.bind.annotation.PutMapping;
+&nbsp;import org.springframework.web.bind.annotation.RequestBody;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
+&nbsp;
+&nbsp;@Api(tags =&quot;Pessoa Juridica&quot;)
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/pessoaJuridica&quot;)
+<b class="fc">&nbsp;public class PessoaJuridicaController {</b>
+&nbsp;
+&nbsp;@Autowired
+&nbsp;PessoaJuridicaService service;
+&nbsp;
+&nbsp;    @PostMapping
+&nbsp;    public ResponseEntity cadastrarPessoaJuridica(@RequestBody PessoaJuridicaDTO pessoaJuridicaDTO){
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            PessoaJuridicaDTO pf = service.cadastrarPessoaJuridica(pessoaJuridicaDTO);</b>
+<b class="nc">&nbsp;            return ResponseEntity.ok().body(pf);</b>
+<b class="nc">&nbsp;        }catch (DesafioException e){</b>
+<b class="nc">&nbsp;            Map resposta = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;            resposta.put(e.getMessage(),e.getCause());</b>
+<b class="nc">&nbsp;            return ResponseEntity.badRequest().body(e.toString());</b>
+<b class="nc">&nbsp;        }catch (Exception e){</b>
+<b class="nc">&nbsp;            Map resposta = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;            resposta.put(e.getMessage(),e.getCause());</b>
+<b class="nc">&nbsp;            return ResponseEntity.badRequest().body(e.getMessage());</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/cnpj/{cnpj}&quot;)
+&nbsp;    public ResponseEntity buscarPessoaJuridicaPorCpf(@PathVariable(&quot;cnpj&quot;)String cnpj){
+&nbsp;        try{
+<b class="nc">&nbsp;            PessoaJuridicaDTO pessoaJuridicaDTO = service.buscarPessoaJuridicaPorCnpj(cnpj);</b>
+<b class="nc">&nbsp;            return ResponseEntity.ok().body(pessoaJuridicaDTO);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (Exception e ){</b>
+<b class="nc">&nbsp;            return ResponseEntity.notFound().build();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;email/{email}&quot;)
+&nbsp;    public ResponseEntity buscarPessoaJuridicaPorEmail(@PathVariable(&quot;email&quot;)String email){
+&nbsp;        try{
+<b class="nc">&nbsp;            PessoaJuridicaDTO pessoaJuridicaDTO = service.buscarPessoaJuridicaEmail(email);</b>
+<b class="nc">&nbsp;            return ResponseEntity.ok().body(pessoaJuridicaDTO);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (Exception e ){</b>
+<b class="nc">&nbsp;            return ResponseEntity.notFound().build();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @GetMapping(&quot;/uuid/{uuid}&quot;)
+&nbsp;    public ResponseEntity buscarPessoaJuridicaPorUUID(@PathVariable(&quot;uuid&quot;) UUID uuid){
+&nbsp;        try{
+<b class="nc">&nbsp;            PessoaJuridicaDTO pessoaJuridicaDTO = service.buscarPessoaJuridicaPorUUID(uuid);</b>
+<b class="nc">&nbsp;            return ResponseEntity.ok().body(pessoaJuridicaDTO);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (Exception e ){</b>
+<b class="nc">&nbsp;            return ResponseEntity.notFound().build();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping
+&nbsp;    public ResponseEntity alterarPessoaJuridica(@RequestBody PessoaJuridicaDTO pessoaJuridicaDTO){
+&nbsp;        PessoaJuridicaDTO pessoaJuridicaAtual;
+&nbsp;        try{
+<b class="nc">&nbsp;            pessoaJuridicaAtual = service.buscarPessoaJuridicaPorUUID(pessoaJuridicaDTO.getUuid());</b>
+<b class="nc">&nbsp;        }catch (Exception e){</b>
+<b class="nc">&nbsp;            Map resposta = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;            resposta.put(&quot;Não foi possivel alterar o Cliente&quot;,&quot;Cliente não localizado&quot;);</b>
+<b class="nc">&nbsp;            return ResponseEntity.badRequest().body(resposta);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            pessoaJuridicaDTO = service.alterarPessoaJuridica(pessoaJuridicaAtual,pessoaJuridicaDTO);</b>
+<b class="nc">&nbsp;        }catch (DesafioException e){</b>
+<b class="nc">&nbsp;            Map resposta = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;            resposta.put(e.getMessage(),e.getCause());</b>
+<b class="nc">&nbsp;            return ResponseEntity.badRequest().body(resposta);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return ResponseEntity.ok().body(pessoaJuridicaDTO);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/{uuid}&quot;)
+&nbsp;    public ResponseEntity deletarPessoaJuridica(@PathVariable UUID uuid){
+&nbsp;
+&nbsp;        PessoaJuridicaDTO pessoaJuridicaAtual;
+&nbsp;        try{
+<b class="nc">&nbsp;            pessoaJuridicaAtual = service.buscarPessoaJuridicaPorUUID(uuid);</b>
+<b class="nc">&nbsp;        }catch (Exception e){</b>
+<b class="nc">&nbsp;            Map resposta = new HashMap&lt;&gt;();</b>
+<b class="nc">&nbsp;            resposta.put(&quot;Não foi possivel excluir o Cliente&quot;,&quot;Cliente não localizado&quot;);</b>
+<b class="nc">&nbsp;            return ResponseEntity.badRequest().body(resposta);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        service.excluirPessoaJuridica(uuid);</b>
+&nbsp;
+<b class="nc">&nbsp;        return ResponseEntity.noContent().build();</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-09-28 22:02</div>
+</div>
+</body>
+</html>

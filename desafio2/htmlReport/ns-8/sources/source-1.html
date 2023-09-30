@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > PessoaFisicaService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.cielo.bootcamp.desafio.service</a>
+</div>
+
+<h1>Coverage Summary for Class: PessoaFisicaService (com.cielo.bootcamp.desafio.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PessoaFisicaService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12,5%
+  </span>
+  <span class="absValue">
+    (1/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    8,3%
+  </span>
+  <span class="absValue">
+    (3/36)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.cielo.bootcamp.desafio.service;
+&nbsp;
+&nbsp;import com.cielo.bootcamp.desafio.converter.Converter;
+&nbsp;import com.cielo.bootcamp.desafio.dto.PessoaFisicaDTO;
+&nbsp;import com.cielo.bootcamp.desafio.entity.PessoaFisicaEntity;
+&nbsp;import com.cielo.bootcamp.desafio.exception.DesafioException;
+&nbsp;import com.cielo.bootcamp.desafio.repository.PessoaFisicaRepository;
+&nbsp;import com.cielo.bootcamp.desafio.valicao.Validacao;
+&nbsp;import java.util.Objects;
+&nbsp;import java.util.UUID;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class PessoaFisicaService {
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    PessoaFisicaRepository pessoaFisicaRepository;
+&nbsp;    private final Converter converter;
+&nbsp;
+&nbsp;    private final Validacao validacao;
+&nbsp;
+<b class="fc">&nbsp;    public PessoaFisicaService(Converter converter, Validacao validacao) {</b>
+<b class="fc">&nbsp;        this.converter = converter;</b>
+<b class="fc">&nbsp;        this.validacao = validacao;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PessoaFisicaDTO cadastrarPessoaFisica(PessoaFisicaDTO pessoaFisicaDTO) throws DesafioException {
+<b class="nc">&nbsp;        String validado = validacao.validacaoPessoaFisica(pessoaFisicaDTO);</b>
+<b class="nc">&nbsp;        if (!validado.isEmpty())</b>
+<b class="nc">&nbsp;            throw new DesafioException(&quot;400&quot;, &quot;Ocorreu um erro ao cadastrar pessoa fisica&quot;, validado);</b>
+<b class="nc">&nbsp;        PessoaFisicaEntity pessoaFisicaEntity = pessoaFisicaRepository.saveAndFlush(converter.toPessoaFisicaEntity(pessoaFisicaDTO));</b>
+<b class="nc">&nbsp;        return converter.toPessoaFisicaDTO(pessoaFisicaEntity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PessoaFisicaDTO buscarPessoaFisicaPorCpf(String cpf) {
+<b class="nc">&nbsp;        PessoaFisicaEntity pessoaFisicaEntity = pessoaFisicaRepository.findByNrCpf(cpf);</b>
+<b class="nc">&nbsp;        return converter.toPessoaFisicaDTO(pessoaFisicaEntity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PessoaFisicaDTO buscarPessoaFisicaEmail(String email) {
+<b class="nc">&nbsp;        PessoaFisicaEntity pessoaFisicaEntity = pessoaFisicaRepository.findByEmail(email);</b>
+<b class="nc">&nbsp;        return converter.toPessoaFisicaDTO(pessoaFisicaEntity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public PessoaFisicaDTO buscarPessoaFisicaPorUUID(UUID uuid) {
+<b class="nc">&nbsp;        PessoaFisicaEntity pessoaFisicaEntity = pessoaFisicaRepository.findByUuid(uuid);</b>
+<b class="nc">&nbsp;        return converter.toPessoaFisicaDTO(pessoaFisicaEntity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PessoaFisicaDTO alterarPessoaFisica(PessoaFisicaDTO entity, PessoaFisicaDTO pessoaFisicaDTO) {
+<b class="nc">&nbsp;            pessoaFisicaDTO = parse(entity, pessoaFisicaDTO);</b>
+<b class="nc">&nbsp;        String validado = validacao.validacaoPessoaFisica(pessoaFisicaDTO);</b>
+<b class="nc">&nbsp;        if (!validado.isEmpty())</b>
+<b class="nc">&nbsp;            throw new DesafioException(&quot;400&quot;, &quot;Ocorreu um erro ao alterar pessoa fisica&quot;, validado);</b>
+&nbsp;
+<b class="nc">&nbsp;        PessoaFisicaEntity pessoaFisicaEntity = pessoaFisicaRepository.saveAndFlush(converter.toPessoaFisicaEntity(pessoaFisicaDTO));</b>
+<b class="nc">&nbsp;        return converter.toPessoaFisicaDTO(pessoaFisicaEntity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PessoaFisicaDTO parse(PessoaFisicaDTO atual, PessoaFisicaDTO pessoaFisicaDTO) {
+<b class="nc">&nbsp;        PessoaFisicaDTO pessoaFisica = new PessoaFisicaDTO();</b>
+<b class="nc">&nbsp;        pessoaFisica.setUuid(pessoaFisicaDTO.getUuid());</b>
+&nbsp;
+<b class="nc">&nbsp;        if (Objects.isNull(pessoaFisicaDTO.getCdMCC()) &amp;&amp; !pessoaFisicaDTO.getCdMCC().isEmpty())</b>
+<b class="nc">&nbsp;            pessoaFisica.setCdMCC(pessoaFisicaDTO.getCdMCC());</b>
+<b class="nc">&nbsp;        else pessoaFisica.setCdMCC(atual.getCdMCC());</b>
+&nbsp;
+<b class="nc">&nbsp;        if (Objects.isNull(pessoaFisicaDTO.getNomeCliente()) &amp;&amp; !pessoaFisicaDTO.getNomeCliente().isEmpty())</b>
+<b class="nc">&nbsp;            pessoaFisica.setNomeCliente(pessoaFisicaDTO.getNomeCliente());</b>
+<b class="nc">&nbsp;        else pessoaFisica.setNomeCliente(atual.getNomeCliente());</b>
+&nbsp;
+<b class="nc">&nbsp;        if (Objects.isNull(pessoaFisicaDTO.getNrCpf()) &amp;&amp; !pessoaFisicaDTO.getNrCpf().isEmpty())</b>
+<b class="nc">&nbsp;            pessoaFisica.setNrCpf(pessoaFisicaDTO.getNrCpf());</b>
+<b class="nc">&nbsp;        else pessoaFisica.setNrCpf(atual.getNrCpf());</b>
+&nbsp;
+<b class="nc">&nbsp;        if (Objects.isNull(pessoaFisicaDTO.getEmail()) &amp;&amp; !pessoaFisicaDTO.getEmail().isEmpty())</b>
+<b class="nc">&nbsp;            pessoaFisica.setEmail(pessoaFisicaDTO.getEmail());</b>
+<b class="nc">&nbsp;        else pessoaFisica.setEmail(atual.getEmail());</b>
+&nbsp;
+<b class="nc">&nbsp;        return pessoaFisica;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void excluirPessoaFisica(UUID uuid){
+<b class="nc">&nbsp;        pessoaFisicaRepository.deleteById(uuid);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-09-28 22:02</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > PessoaFisicaEntity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.cielo.bootcamp.desafio.entity</a>
+</div>
+
+<h1>Coverage Summary for Class: PessoaFisicaEntity (com.cielo.bootcamp.desafio.entity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PessoaFisicaEntity</td>
+<td class="coverageStat">
+  <span class="percent">
+    11,1%
+  </span>
+  <span class="absValue">
+    (1/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    11,1%
+  </span>
+  <span class="absValue">
+    (1/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PessoaFisicaEntity$HibernateInstantiator$qEn1Kbm8</td>
+  </tr>
+  <tr>
+    <td class="name">PessoaFisicaEntity$HibernateInstantiator$WvxhQ8Z1</td>
+  </tr>
+  <tr>
+    <td class="name">PessoaFisicaEntity$HibernateProxy$5JWuRPJo</td>
+  </tr>
+  <tr>
+    <td class="name">PessoaFisicaEntity$HibernateProxy$8EJNgC8d</td>
+  </tr>
+  <tr>
+    <td class="name">PessoaFisicaEntity$PessoaFisicaEntityBuilder</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (1/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (1/10)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.cielo.bootcamp.desafio.entity;
+&nbsp;
+&nbsp;import jakarta.persistence.Column;
+&nbsp;import jakarta.persistence.Entity;
+&nbsp;import jakarta.persistence.GeneratedValue;
+&nbsp;import jakarta.persistence.GenerationType;
+&nbsp;import jakarta.persistence.Id;
+&nbsp;import jakarta.persistence.Table;
+&nbsp;import jakarta.validation.constraints.Email;
+&nbsp;import java.util.UUID;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import lombok.Builder;
+&nbsp;import lombok.Data;
+&nbsp;import lombok.Getter;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import lombok.Setter;
+&nbsp;import org.antlr.v4.runtime.misc.NotNull;
+&nbsp;import org.hibernate.validator.constraints.br.CNPJ;
+&nbsp;import org.hibernate.validator.constraints.br.CPF;
+&nbsp;
+<b class="nc">&nbsp;@Builder</b>
+<b class="fc">&nbsp;@NoArgsConstructor</b>
+<b class="nc">&nbsp;@AllArgsConstructor</b>
+&nbsp;@Entity
+<b class="nc">&nbsp;@Data</b>
+&nbsp;@Table(name = &quot;tb_empresa_pessoa_fisica&quot;)
+&nbsp;public class PessoaFisicaEntity {
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.UUID)
+&nbsp;    @Column(name = &quot;uuid_pj&quot;)
+<b class="nc">&nbsp;    private UUID uuid;</b>
+&nbsp;
+&nbsp;    @NotNull
+&nbsp;    @Column(name = &quot;nm_cliente&quot;)
+<b class="nc">&nbsp;    private String nomeCliente;</b>
+&nbsp;
+&nbsp;    @Email
+&nbsp;    @NotNull
+&nbsp;    @Column(name = &quot;ds_email&quot;)
+<b class="nc">&nbsp;    private String email;</b>
+&nbsp;
+&nbsp;    @NotNull
+&nbsp;    @Column(name = &quot;cd_Merchant_Category_Code&quot;)
+<b class="nc">&nbsp;    private String cdMCC;</b>
+&nbsp;
+&nbsp;    @NotNull
+&nbsp;    @CPF
+&nbsp;    @Column(name = &quot;nr_cpf&quot;)
+<b class="nc">&nbsp;    private String nrCpf;</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-09-28 22:02</div>
+</div>
+</body>
+</html>
