@@ -1,0 +1,16 @@
+Não há nenhuma segurança aplicada no projeto, o que é uma enorme vulnerabilidade, podendo expor dados sensiveis de clientes ferindo a lei LGPD, podendo gerar processos contra a empresa.Além disso, também não há um serviço de login para que seja adicionado um token de acesso.  
+
+Há a necessidade : 
+
+Alterar a modelagem dos dados, para adicionar a senha criptografada do cliente
+
+Alterar os serviços de cadastro solicitar senha e retornar um token (caso ao cadastrar já entre logado)
+
+criptografar a senha e salvar criptografada
+
+criar serviço de login
+
+implementar o token de acesso em todas as api que não sejam de cadastro/login
+
+
+

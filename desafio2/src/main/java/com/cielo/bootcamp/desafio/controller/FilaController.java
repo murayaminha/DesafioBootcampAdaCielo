@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/fila")
 public class FilaController {
 
-    Fila fila;
+    Fila fila = new Fila();
 
-    @GetMapping("/cpf/{cpf}")
-    public ResponseEntity buscarPessoaFisicaPorCpf(@PathVariable("cpf")String cpf){
+    @GetMapping("")
+    public ResponseEntity buscarPessoaFisicaPorCpf(){
         try{
             return ResponseEntity.ok().body(fila.consumirFila());
         }

@@ -6,8 +6,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Fila <T> implements FilaInterface <T> {
 
-private static Object[] fila;
+private static Object[] fila=new Object[30];
 private static int contador=0;
+
 
 
     @Override
